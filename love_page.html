@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Te amo</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      padding-top: 100px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 48px;
+    }
+
+    p {
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .pulsing-heart {
+      display: inline-block;
+      animation: pulse 1s infinite;
+    }
+
+    .love-button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .love-button:hover {
+      background-color: #ff1493;
+    }
+
+    #love-message {
+      display: none;
+      font-size: 20px;
+      margin-top: 20px;
+      color: #d60076;
+      font-weight: bold;
+      opacity: 0;
+    }
+
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .falling-heart {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      color: #ff4d6d;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Te amo</h1>
+  <p>
+    <span class="pulsing-heart">❤️</span> Sara para siempre <span class="pulsing-heart">❤️</span>
+  </p>
+
+  <button class="love-button" onclick="showMessage()">انقري هنا 💌</button>
+
+  <div id="love-message">أنتِ دائمة في قلبي يا سارة ❤️</div>
+
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    متصفحك لا يدعم تشغيل الصوت.
+  </audio>
+
+  <script>
+    function showMessage() {
+      const msg = document.getElementById('love-message');
+      msg.style.display = 'block';
+      msg.style.animation = 'fadeSlideUp 1s ease forwards';
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('falling-heart');
+      heart.innerText = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
